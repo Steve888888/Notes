@@ -1,0 +1,11 @@
+2021/1/3
+一、设计心得：
+1.具体类的向上扩展和水平扩展。
+2.没有完美的设计模式，需要和具体实现、以及legacy code做一个妥协。
+
+
+二、重构心得
+1.single responsibility 
+2.decouple functions.
+3.reduce code dulicacy & redundancy
+
