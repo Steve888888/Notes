@@ -1,10 +1,12 @@
 2021/1/3
-一、设计心得：
-1.具体类的向上扩展和水平扩展。
+一、Design summarty
+1.具体类的向上扩展和水平扩展。subClass  
 2.没有完美的设计模式，需要和具体实现、以及legacy code做一个妥协。
 
 
-二、重构心得
+1.specific classes/subclasses vertical upper extension and  horizental extension. 
+2.No perfect design.you need a comprise with specific implementationa and legacy code.
+
 Refactory principles
 1.single responsibility 
 2.decouple data or functions.
@@ -17,7 +19,7 @@ Other Furture refactory possiblity：
 2.reduce the use of pointers.
 3.reduce the use of Singleton pattern.
 
-三、具体工作。
+Actions:
 1.Analyse legacy code and external alarm functions.
 2.Design the draft refactory plan and draw the class relation diagram.
 3.Join and discuss the plan and record a final design diagram.
@@ -30,8 +32,15 @@ Module External Alarm Refactory
 Motif: 
 improve the code readability,testablity,extensiblity by reduce code nesting,complexity and branches.
 Primary principles during refactory: 
-a.	single responsibility  b.decouple data or functions. c.reduce code duplicacy.  d.reduce branch and nesting.
+1.	single responsibility  
+2.decouple data or functions. 
+3.reduce code duplicacy.  
+4.reduce branch and nesting.
+
 Future refactory principles:
+a.remove lazy classes 
+b.reduce the use of pointers.
+c.reduce the use of Singleton pattern.
 
 Actions:
 1.	Analyse legacy code and external alarm functions,Design the draft refactory plan and draw the class diagram.
@@ -58,9 +67,7 @@ Further study and work:
 2.	FANT-H BA Redundancy Alarming.
 
 Other furture refactory principles： 
-a.remove lazy classes 
-b.reduce the use of pointers.
-c.reduce the use of Singleton pattern.
+
 
  
   
