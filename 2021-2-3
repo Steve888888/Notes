@@ -5,7 +5,34 @@
 
 
 二、重构心得
+Refactory principles
 1.single responsibility 
-2.decouple functions.
-3.reduce code dulicacy & redundancy
+2.decouple data or functions.
+3.reduce code duplicacy.
+4.reduce branch and nesting.
+5.Improve the code readability,testablity,extensiblity by reduce code nesting,complexity and branches.
+
+Other Furture refactory possiblity： 
+1.remove lazy classes
+2.reduce the use of pointers.
+3.reduce the use of Singleton pattern.
+
+三、具体工作。
+1.Analyse legacy code and external alarm functions.
+2.Design the draft refactory plan and draw the class relation diagram.
+3.Join and discuss the plan and record a final design diagram.
+4.Write the base alarm class and review the factory code.
+5.Discuss the debug problems.
+
+Redundancy.
+1.Complete to reaad analyse Redundany code.
+2.Propose a draft detail plan for supporting redundancy alarm when the present board can't build redundancy with the peer board.
+ The main two cases:
+ a.Both plugged in or present at the same time,the active Nt board has to be choosen by negotiation.After selection both the selected active need a check on the standy board variant number and board hardware capatbity consistency such as switch speed,clock type etc.
+ b.One is active.In this case,the active need to check the peer variant number and board hardware capatbity consistency.
+ c.In a and b,if both boards' hardware capability is inconsistent,report alarm to logic on the active NT board.
+ 
+ 
+  
+
 
