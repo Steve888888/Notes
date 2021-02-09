@@ -63,6 +63,43 @@ Other furture refactory possiblity：
 2.reduce the use of pointers.
 3.reduce the use of Singleton pattern.
 
+
+Module External Alarm Refactory
+Motif: 
+improve the code readability,testablity,extensiblity by reduce code nesting,complexity and branches.
+Primary principles during refactory: 
+a.	single responsibility  b.decouple data or functions. c.reduce code duplicacy.  d.reduce branch and nesting.
+Future refactory principles:
+
+Actions:
+1.	Analyse legacy code and external alarm functions,Design the draft refactory plan and draw the class diagram.
+2.	Join and discuss a final detail design plan.
+3.	Write the base alarm class and input class and review the refactory code,discuss and fix the debug problems.
+
+Redundancy Alarming Feature Analyis
+Redundancy code study and anlayis
+1.	Completed to read and analyse redundany code and part code of sw aggregator-app,eqpt-hwa-app.
+2.	Propose a draft detail plan for supporting redundancy alarm if the peer board has no redundant hardware capability with the present board
+relevant user cases analysis for detail design.
+ a.Both plugged in or present at the same time,the active Nt board has to be choosen by negotiation.After selection both the selected active need a check on the standy board variant number and board hardware capatbity consistency such as switch speed,clock type etc.
+ b.One is active.In this case,the active need to check the peer variant number and board hardware capatbity consistency.
+ c.In a and b,if both boards' hardware capability is inconsistent,report alarm to logic on the active NT board.
+
+Test support.
+1.	LT enter oper state timeout when run the case: iterative cold-restart and warm-restart. 
+Dms_controller_app didn’t come to sync point.system watchdog timeout.
+2.	LT lost some interface configuration.(no substantial proof yet)
+a.The case hasn’t to be reproduced.
+   b.read dms_file_mgnt code.
+Further study and work:
+1.	Eqpt-aggr-hwa-app,confd.
+2.	FANT-H BA Redundancy Alarming.
+
+Other furture refactory principles： 
+a..remove lazy classes 
+b.reduce the use of pointers.
+c.reduce the use of Singleton pattern.
+
  
   
 
