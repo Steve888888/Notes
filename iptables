@@ -19,122 +19,7 @@ Linux默认是允许Ping响应的，系统是否允许Ping由2个因素决定的
          如果已经有net.ipv4.icmp_echo_ignore_all这一行了，直接修改=号后面的值即可的。（0表示允许，1表示禁止）
          修改完成后执行sysctl -p使新配置生效。
 
-/isam/scripts # iptables -p icmp --help 
-iptables v1.8.4
-
-Usage: iptables -[ACD] chain rule-specification [options]
-       iptables -I chain [rulenum] rule-specification [options]
-       iptables -R chain rulenum rule-specification [options]
-       iptables -D chain rulenum [options]
-       iptables -[LS] [chain [rulenum]] [options]
-       iptables -[FZ] [chain] [options]
-       iptables -[NX] chain
-       iptables -E old-chain-name new-chain-name
-       iptables -P chain target [options]
-       iptables -h (print this help information)
-
-Commands:
-Either long or short options are allowed.
-  --append  -A chain            Append to chain
-  --check   -C chain            Check for the existence of a rule
-  --delete  -D chain            Delete matching rule from chain
-  --delete  -D chain rulenum
-                                Delete rule rulenum (1 = first) from chain
-  --insert  -I chain [rulenum]
-                                Insert in chain as rulenum (default 1=first)
-  --replace -R chain rulenum
-                                Replace rule rulenum (1 = first) in chain
-  --list    -L [chain [rulenum]]
-                                List the rules in a chain or all chains
-  --list-rules -S [chain [rulenum]]
-                                Print the rules in a chain or all chains
-  --flush   -F [chain]          Delete all rules in  chain or all chains
-  --zero    -Z [chain [rulenum]]
-                                Zero counters in chain or all chains
-  --new     -N chain            Create a new user-defined chain
-  --delete-chain
-            -X [chain]          Delete a user-defined chain
-  --policy  -P chain target
-                                Change policy on chain to target
-  --rename-chain
-            -E old-chain new-chain
-                                Change chain name, (moving any references)
-Options:
-    --ipv4      -4              Nothing (line is ignored by ip6tables-restore)
-    --ipv6      -6              Error (line is ignored by iptables-restore)
-[!] --protocol  -p proto        protocol: by number or name, eg. `tcp'
-[!] --source    -s address[/mask][...]
-                                source specification
-[!] --destination -d address[/mask][...]
-                                destination specification
-[!] --in-interface -i input name[+]
-                                network interface name ([+] for wildcard)
- --jump -j target
-                                target for rule (may load target extension)
-  --goto      -g chain
-                              jump to chain with no return
-  --match       -m match
-                                extended match (may load extension)
-  --numeric     -n              numeric output of addresses and ports
-[!] --out-interface -o output name[+]
-                                network interface name ([+] for wildcard)
-  --table       -t table        table to manipulate (default: `filter')
-  --verbose     -v              verbose mode
-  --wait        -w [seconds]    maximum wait to acquire xtables lock before give up
-  --wait-interval -W [usecs]    wait time to try to acquire xtables lock
-                                default is 1 second
-  --line-numbers                print line numbers when listing
-  --exact       -x              expand numbers (display exact values)
-[!] --fragment  -f              match second or further fragments only
-  --modprobe=<command>          try to insert modules using this command
-  --set-counters PKTS BYTES     set the counter during insert/append
-[!] --version   -V              print package version.
-
-icmp match options:
-[!] --icmp-type typename        match icmp type
-[!] --icmp-type type[/code]     (or numeric type or type/code)
-Valid ICMP Types:
-any
-echo-reply (pong)
-destination-unreachable
-   network-unreachable
-   host-unreachable
-   protocol-unreachable
-   port-unreachable
-   fragmentation-needed
-   source-route-failed
-   network-unknown
-   host-unknown
-   network-prohibited
-   host-prohibited
-   TOS-network-unreachable
-   TOS-host-unreachable
-   communication-prohibited
-   host-precedence-violation
-   precedence-cutoff
-   source-quench
-   redirect
-   network-redirect
-   host-redirect
-   TOS-network-redirect
-   TOS-host-redirect
-   echo-request (ping)
-   router-advertisement
-   router-solicitation
-   time-exceeded (ttl-exceeded)
-   ttl-zero-during-transit
-   ttl-zero-during-reassembly
-   parameter-problem
-   ip-header-bad
-   required-option-missing
-   timestamp-request
-   timestamp-reply
-  address-mask-request
-  address-mask-reply
-/isam/scripts #
-          
- 
- 
+       /isam/scripts # iptables -p icmp --help 
     B、防火墙设置（注：此处的方法的前提是内核配置是默认值，也就是没有禁止Ping）
      这里以Iptables防火墙为例，其他防火墙操作方法可参考防火墙的官方文档。
      1、允许PING设置      
@@ -286,70 +171,6 @@ TYPE	CODE	Description	Query	Error
 
 查询命令  :  iptables -nvL INPUT
 
-
-
-~ # ifconfig 
-eth-debug Link encap:Ethernet  HWaddr 08:47:D0:0F:1D:4A  
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
-
-eth-nta   Link encap:Ethernet  HWaddr 06:00:00:00:00:A0  
-          UP BROADCAST RUNNING NOARP PROMISC SLAVE MULTICAST  MTU:9600  Metric:1
-          RX packets:133794267 errors:0 dropped:1 overruns:0 frame:0
-          TX packets:765650 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:31744073977 (29.5 GiB)  TX bytes:87558226 (83.5 MiB)
-
-eth0      Link encap:Ethernet  HWaddr 08:47:D0:0F:1D:4A  
-          UP BROADCAST RUNNING MULTICAST  MTU:9600  Metric:1
-          RX packets:133794267 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:765729 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:34687547851 (32.3 GiB)  TX bytes:87564307 (83.5 MiB)
-
-eth1      Link encap:Ethernet  HWaddr 06:00:00:00:00:78  
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:3054 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:3060 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:377464 (368.6 KiB)  TX bytes:259712 (253.6 KiB)
-
-inband    Link encap:Ethernet  HWaddr 08:47:D0:0F:1D:4A  
-          inet6 addr: fe80::a47:d0ff:fe0f:1d4a/64 Scope:Link
-          UP BROADCAST RUNNING  MTU:9600  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:68 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:0 (0.0 B)  TX bytes:4928 (4.8 KiB)
-
-lo        Link encap:Local Loopback  
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:4163282 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:4163282 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1 
-          RX bytes:418026598 (398.6 MiB)  TX bytes:418026598 (398.6 MiB)
-
-tap-fwd   Link encap:Ethernet  HWaddr 7A:BB:47:A6:8B:9B  
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:628626 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:765418 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:48161049 (45.9 MiB)  TX bytes:70253416 (66.9 MiB)
-
-tap-fwd.4094 Link encap:Ethernet  HWaddr 06:00:00:00:00:A0  
-          inet addr:169.254.1.5  Bcast:169.254.255.255  Mask:255.255.0.0
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:628626 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:765418 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:36845781 (35.1 MiB)  TX bytes:67191744 (64.0 MiB)
-
-
 1、命令 -A, --append
 范例：iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 说明 ：新增规则到INPUT规则链中，规则时接到所有目的端口为80的数据包的流入连接，该规则将会成为规则链中的最后一条规则。
@@ -385,50 +206,6 @@ tap-fwd.4094 Link encap:Ethernet  HWaddr 06:00:00:00:00:A0
 范例： iptables -E denied disallowed
 说明： 修改某自订规则链的名称。
 
-
- iptables -p icmp –help
-
-icmp match options:
-[!] --icmp-type typename        match icmp type
-[!] --icmp-type type[/code]     (or numeric type or type/code)
-Valid ICMP Types:
-any
-echo-reply (pong)
-destination-unreachable
-   network-unreachable
-   host-unreachable
-   protocol-unreachable
-   port-unreachable
-   fragmentation-needed
-   source-route-failed
-   network-unknown
-   host-unknown
-   network-prohibited
-   host-prohibited
-   TOS-network-unreachable
-   TOS-host-unreachable
-   communication-prohibited
-   host-precedence-violation
-   precedence-cutoff
-source-quench
-redirect
-   network-redirect
-   host-redirect
-   TOS-network-redirect
-   TOS-host-redirect
-echo-request (ping)
-router-advertisement
-router-solicitation
-time-exceeded (ttl-exceeded)
-   ttl-zero-during-transit
-   ttl-zero-during-reassembly
-parameter-problem
-   ip-header-bad
-   required-option-missing
-timestamp-request
-timestamp-reply
-address-mask-request
-address-mask-reply
 
 
 （二）常用封包比对参数：
@@ -525,11 +302,7 @@ MARK 将数据包标上某个代号，以便提供作为后续过滤的条件判
 iptables -t mangle -A PREROUTING -p tcp --dport 22 -j MARK --set-mark 2
 以上用来大量的实例来说明iptables的参数和命令的用法，如果有朋友有配置iptables的需求可以QQ联系我：1600490666，或者将需求发给我，为您配置相应的策略。
 
-ssh -p923 root@135.251.200.201
-ssh root@169.254.1.3 -p 2222
-
 iptables -A INPUT -p icmp -j LOG --log-prefix "INPUT packets"
-
 
 
 /mnt/prozone_rsf/var # iptables -L -n -v |grep icmp
@@ -557,18 +330,10 @@ iptables -A INPUT -p tcp -j LOG --log-prefix "INPUT packets"
     0     0 RETURN     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            limit: avg 5/sec burst 10
     0     0 DROP       icmp --  *      *       0.0.0.0/0            0.0.0.0/
 
-
-iptables -Z INPUT
-
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type redirect -j DROP
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type timestamp-request -j DROP
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type 15 -j DROP
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type address-mask-request -j DROP
-
-
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type redirect -j DROP
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type timestamp-request -j DROP
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type 15 -j DROP
-/isam/scripts/common_network_functions_iptables.sh:   $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type address-mask-request -j DROP
+  $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type redirect -j DROP
+  $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type timestamp-request -j DROP
+  $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type 15 -j DROP
+  $IPTABLES -t raw -A drop_when_bad_icmp -p icmp --icmp-type address-mask-request -j DROP
+ 
 
 
